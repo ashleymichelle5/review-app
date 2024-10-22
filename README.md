@@ -12,7 +12,7 @@ I created Tech Insight because sharing experiences about electronics is valuable
 
 ### Links
 * [My-Trello](https://trello.com/b/2lMUCF6f/project-2)
-* [Deploy-link]()
+* [Deploy-link](https://tech-insight-02d34550335e.herokuapp.com)
 
 ## Technologies used:
 
