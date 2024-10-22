@@ -1,5 +1,5 @@
-const Review = require('../models/Review');
-const User = require('../models/User');
+const Review = require('../models/review.js');
+const User = require('../models/user.js');
 const fs = require('fs').promises;
 const path = require('path');
 
