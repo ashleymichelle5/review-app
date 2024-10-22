@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Tech Insight</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tech Insight</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Error</h2>
+        <p><%= message %></p>
+        <% if (process.env.NODE_ENV === 'development') { %>
+            <p><%= error.stack %></p>
+        <% } %>
+        <a href="/" class="btn">Return to Home</a>
+    </main>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Tech Insight</p>
+    </footer>
+</body>
+</html>

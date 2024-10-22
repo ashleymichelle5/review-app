@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Review - Tech Insight</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tech Insight</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/reviews">All Reviews</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Create New Review</h2>
+        <form action="/reviews" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="product">Product:</label>
+                <input type="text" id="product" name="product" required>
+            </div>
+            <div>
+                <label>Rating:</label>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5" required/>
+                    <label for="star5" title="5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4"/>
+                    <label for="star4" title="4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3"/>
+                    <label for="star3" title="3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2"/>
+                    <label for="star2" title="2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1"/>
+                    <label for="star1" title="1 star"></label>
+                </div>
+            </div>
+            <div>
+                <label for="details">Details:</label>
+                <textarea id="details" name="details" required></textarea>
+            </div>
+            <div>
+                <label for="pros">Pros:</label>
+                <textarea id="pros" name="pros" required></textarea>
+            </div>
+            <div>
+                <label for="cons">Cons:</label>
+                <textarea id="cons" name="cons" required></textarea>
+            </div>
+            <div>
+                <label for="images">Images:</label>
+                <input type="file" id="images" name="images" multiple>
+            </div>
+            <button type="submit">Create Review</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Tech Insight</p>
+    </footer>
+</body>
+</html>

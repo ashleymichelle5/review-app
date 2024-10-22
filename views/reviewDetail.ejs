@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= review.product %> Review - Tech Insight</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tech Insight</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/reviews">All Reviews</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2><%= review.product %> Review</h2>
+        <p>Rating: 
+            <span class="star-rating-display">
+                <% for(let i = 5; i >= 1; i--) { %>
+                    <span class="<%= i <= review.rating ? 'filled' : '' %>">★</span>
+                <% } %>
+            </span>
+            (<%= review.rating %>/5)
+        </p>
+        <p>By: <%= review.user.username %></p>
+        <p>Details: <%= review.details %></p>
+        <p>Pros: <%= review.pros %></p>
+        <p>Cons: <%= review.cons %></p>
+        
+        <% if (review.images && review.images.length > 0) { %>
+            <div class="review-images">
+                <% review.images.forEach(function(image) { %>
+                    <img src="/uploads/<%= image %>" alt="Review Image">
+                <% }); %>
+            </div>
+        <% } %>
+
+        <% if (isOwner) { %>
+            <div class="review-actions">
+                <a href="/reviews/<%= review._id %>/edit" class="btn">Edit Review</a>
+                <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Delete Review</button>
+                </form>
+            </div>
+        <% } %>
+    </main>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Tech Insight</p>
+    </footer>
+</body>
+</html>

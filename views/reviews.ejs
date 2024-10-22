@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reviews - Tech Insight</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Tech Insight</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/reviews">Reviews</a></li>
+                    <li><a href="/reviews/create">Create Review</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>All Reviews</h1>
+        
+        <% if (reviews && reviews.length > 0) { %>
+            <div class="review-list">
+                <% reviews.forEach(function(review) { %>
+                    <div class="review-item">
+                        <div class="review-image">
+                            <% if (review.images && review.images.length > 0) { %>
+                                <img src="/uploads/<%= review.images[0] %>" alt="<%= review.product %> image">
+                            <% } else { %>
+                                <div class="no-image">No Image</div>
+                            <% } %>
+                        </div>
+                        <div class="review-content">
+                            <h3><%= review.product %></h3>
+                            <div class="star-rating-display">
+                                <% for(let i = 5; i >= 1; i--) { %>
+                                    <span class="<%= i <= review.rating ? 'filled' : '' %>">★</span>
+                                <% } %>
+                            </div>
+                            <p>By: <%= review.user.username %></p>
+                            <p><%= review.details.substring(0, 100) %>...</p>
+                            <a href="/reviews/<%= review._id %>" class="btn">Read more</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>No reviews available at the moment.</p>
+        <% } %>
+
+        <div class="action-buttons">
+            <a href="/reviews/create" class="btn btn-primary">Create New Review</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Tech Insight</p>
+    </footer>
+</body>
+</html>
