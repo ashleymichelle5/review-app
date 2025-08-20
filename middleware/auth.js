@@ -1,12 +1,14 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
+
   // Obtener el token de la cookie
   const token = req.cookies.token;
 
   // Verificar si no hay token
   if (!token) {
     req.user = null; // Establece req.user como null si no hay token
+    res.app.locals.isAuthenticated = false;
     return next();
   }
 
@@ -16,6 +18,7 @@ module.exports = function(req, res, next) {
 
     // Añadir el usuario del payload decodificado a la request
     req.user = decoded;
+    req.app.locals.isAuthenticated = true;
     next();
   } catch (err) {
     console.error('Authentication error:', err);

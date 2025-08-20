@@ -40,4 +40,11 @@ router.put('/:id', auth, upload.array('images', 5), reviewController.updateRevie
 // Ruta para eliminar una reseña
 router.delete('/:id', auth, reviewController.deleteReview);
 
+router.get('/create', (req, res) => {
+  if (!req.user){
+    return res.redirect('/login');
+  }
+  res.render('createReview', {title:'Create Review'});
+});
+
 module.exports = router;

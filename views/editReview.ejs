@@ -14,63 +14,127 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/reviews">All Reviews</a></li>
+                    <% if (locals.isAuthenticated) { %>
+                    <li><a href="/reviews/create">Create Review</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <% } %>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <h2>Edit Review</h2>
-        <form action="/reviews/<%= review._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-            <div>
-                <label for="product">Product:</label>
-                <input type="text" id="product" name="product" value="<%= review.product %>" required>
+         <div class="form-card">
+
+            <div class="form-header">
+                <h2>Edit Review</h2>
             </div>
-            <div>
-                <label>Rating:</label>
-                <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="5" <%= review.rating == 5 ? 'checked' : '' %> required/>
-                    <label for="star5" title="5 stars"></label>
-                    <input type="radio" id="star4" name="rating" value="4" <%= review.rating == 4 ? 'checked' : '' %>/>
-                    <label for="star4" title="4 stars"></label>
-                    <input type="radio" id="star3" name="rating" value="3" <%= review.rating == 3 ? 'checked' : '' %>/>
-                    <label for="star3" title="3 stars"></label>
-                    <input type="radio" id="star2" name="rating" value="2" <%= review.rating == 2 ? 'checked' : '' %>/>
-                    <label for="star2" title="2 stars"></label>
-                    <input type="radio" id="star1" name="rating" value="1" <%= review.rating == 1 ? 'checked' : '' %>/>
-                    <label for="star1" title="1 star"></label>
-                </div>
+
+            <div class="form-body"></div>
+                <form action="/reviews/<%= review._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <div class="form-grid">
+
+                        <div class="form-section">
+                            <label for="product">Product:</label>
+                            <input type="text" id="product" name="product" value="<%= review.product %>" required>
+                        </div>
+
+                        <div class="form-section rating-section">
+                            <label>Rating:</label>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" <%= review.rating == 5 ? 'checked' : '' %> required/>
+                                <label for="star5" title="5 stars"></label>
+                                <input type="radio" id="star4" name="rating" value="4" <%= review.rating == 4 ? 'checked' : '' %>/>
+                                <label for="star4" title="4 stars"></label>
+                                <input type="radio" id="star3" name="rating" value="3" <%= review.rating == 3 ? 'checked' : '' %>/>
+                                <label for="star3" title="3 stars"></label>
+                                <input type="radio" id="star2" name="rating" value="2" <%= review.rating == 2 ? 'checked' : '' %>/>
+                                <label for="star2" title="2 stars"></label>
+                                <input type="radio" id="star1" name="rating" value="1" <%= review.rating == 1 ? 'checked' : '' %>/>
+                                <label for="star1" title="1 star"></label>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <label for="details">Details:</label>
+                            <textarea id="details" name="details" required><%= review.details %></textarea>
+                        </div>
+
+                        <div class="form-section">
+                            <div>
+                                <label for="pros">Pros:</label>
+                                <textarea id="pros" name="pros" required><%= review.pros %></textarea>
+                            </div>
+                            <div>
+                                <label for="cons">Cons:</label>
+                                <textarea id="cons" name="cons" required><%= review.cons %></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section image-upload-section">
+                            
+                                <label for="images">Images:</label>
+                                <input type="file" id="images" name="images" multiple onchange="previewImages(this)">
+                                
+                                <!-- Contenedor para la vista previa de imágenes nuevas -->
+                                <div id="preview-container"></div>
+                            
+                            <% if (review.images && review.images.length > 0) { %>
+                                <div>
+                                    <p>Current Images:</p>
+                                    <% review.images.forEach(function(image) { %>
+                                        <img src="/uploads/<%= image %>" alt="Review Image" width="100">
+                                    <% }); %>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>    
+                    <button type="submit">Update Review</button>
+                </form>
             </div>
-            <div>
-                <label for="details">Details:</label>
-                <textarea id="details" name="details" required><%= review.details %></textarea>
-            </div>
-            <div>
-                <label for="pros">Pros:</label>
-                <textarea id="pros" name="pros" required><%= review.pros %></textarea>
-            </div>
-            <div>
-                <label for="cons">Cons:</label>
-                <textarea id="cons" name="cons" required><%= review.cons %></textarea>
-            </div>
-            <div>
-                <label for="images">Images:</label>
-                <input type="file" id="images" name="images" multiple>
-            </div>
-            <% if (review.images && review.images.length > 0) { %>
-                <div>
-                    <p>Current Images:</p>
-                    <% review.images.forEach(function(image) { %>
-                        <img src="/uploads/<%= image %>" alt="Review Image" width="100">
-                    <% }); %>
-                </div>
-            <% } %>
-            <button type="submit">Update Review</button>
-        </form>
+        </div>
     </main>
 
     <footer>
         <p>&copy; <%= new Date().getFullYear() %> Tech Insight</p>
     </footer>
+    <script>
+        // Script para previsualizar imágenes con recorte
+        function previewImages(input) {
+            const previewContainer = document.getElementById('preview-container');
+            previewContainer.innerHTML = ''; // Limpiar previsualizaciones anteriores
+            
+            if (!input.files || input.files.length === 0 ) {
+                const container = document.createElement('div');
+                container.className = 'edit-image-container';
+
+                const  noPreview = document.createElement('div');
+                noPreview.className = 'no-preview';
+                noPreview.textContent = 'No new images selected';
+
+                container.appendChild(noPreview);
+                previewContainer.appendChild(container);
+                return;
+            }
+
+            for (let i = 0; i < input.files.length; i++) {
+                if (!input.files[i].type.startsWith('image/')) continue;
+
+                const container = document.createElement('div');
+                container.className = 'edit-image-container';
+                
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(input.files[i]);
+                img.onload = function() {
+                    URL.revokeObjectURL(this.src);
+                }
+
+                container.appendChild(img);
+                previewContainer.appendChild(container);
+            }
+        }
+    </script>    
 </body>
 </html>

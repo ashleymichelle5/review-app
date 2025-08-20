@@ -9,16 +9,18 @@
 <body>
     <header>
         <div class="container">
-            <div id="branding">
-                <h1><span class="highlight">Tech Insight</span></h1>
-            </div>
+                    <h1><span class="highlight">Tech Insight</span></h1> 
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/reviews">Reviews</a></li>
+                    <li><a href="/reviews">All Reviews</a></li>
+                    <% if (locals.isAuthenticated) { %>
                     <li><a href="/reviews/create">Create Review</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>
+                    <% } %>
                 </ul>
             </nav>
         </div>
@@ -45,8 +47,8 @@
                                     <span class="<%= i <= review.rating ? 'filled' : '' %>">★</span>
                                 <% } %>
                             </div>
-                            <p>By: <%= review.user.username %></p>
-                            <p><%= review.details.substring(0, 100) %>...</p>
+                            <p class="review-author">By: <%= review.user.username %></p>
+                            <p class="review.excerpt"><%= review.details.substring(0, 100) %></p>
                             <a href="/reviews/<%= review._id %>" class="btn">Read more</a>
                         </div>
                     </div>
@@ -56,8 +58,12 @@
             <p>No reviews available at the moment.</p>
         <% } %>
 
-        <div class="action-buttons">
-            <a href="/reviews/create" class="btn btn-primary">Create New Review</a>
+        <div class="form-section">
+            <% if (locals.isAuthenticated) { %>
+            <a href="/reviews/create" class="btn">Create New Review</a>
+            <% } else { %>
+                <p> Please <a href="/login">login</a> to create a review</p>
+            <% } %>
         </div>
     </main>
 

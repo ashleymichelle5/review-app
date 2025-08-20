@@ -13,6 +13,14 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
+                    <li><a href="/reviews">All Reviews</a></li>
+                    <% if (locals.isAuthenticated) { %>
+                    <li><a href="/reviews/create">Create Review</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <% } %>
                 </ul>
             </nav>
         </div>

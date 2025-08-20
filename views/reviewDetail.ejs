@@ -14,42 +14,84 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/reviews">All Reviews</a></li>
+                    <% if (locals.isAuthenticated) { %>
+                    <li><a href="/reviews/create">Create Review</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <% } %>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <h2><%= review.product %> Review</h2>
-        <p>Rating: 
-            <span class="star-rating-display">
-                <% for(let i = 5; i >= 1; i--) { %>
-                    <span class="<%= i <= review.rating ? 'filled' : '' %>">★</span>
-                <% } %>
-            </span>
-            (<%= review.rating %>/5)
-        </p>
-        <p>By: <%= review.user.username %></p>
-        <p>Details: <%= review.details %></p>
-        <p>Pros: <%= review.pros %></p>
-        <p>Cons: <%= review.cons %></p>
-        
-        <% if (review.images && review.images.length > 0) { %>
-            <div class="review-images">
-                <% review.images.forEach(function(image) { %>
-                    <img src="/uploads/<%= image %>" alt="Review Image">
-                <% }); %>
+        <div class="form-card">
+            <div class="form-header">
+                <h2><%= review.product %> Review</h2>
             </div>
-        <% } %>
 
-        <% if (isOwner) { %>
-            <div class="review-actions">
-                <a href="/reviews/<%= review._id %>/edit" class="btn">Edit Review</a>
-                <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit" class="btn btn-danger">Delete Review</button>
-                </form>
+            <div class="rating-section">
+                <div class="star-rating">
+                    <% for (let i = 1; i <= 5; i++) { %>
+                        <span class="<%= i <= review.rating ? 'filled' : '' %>">★</span>
+                    <% } %>
+                </div>
+                <p class="detail-author">By: <%= review.user.username %></p>
             </div>
-        <% } %>
+
+            <div class="form-body">
+                <div class="form-grid">
+                    <% if (review.images && review.images.length > 0) { %>
+                        <div class="detail-section">
+                            <h3>Product Images</h3>
+                            <div>
+                                <% review.images.forEach(function(image) { %>
+                                    <div class="detail-image-container">
+                                        <img src="/uploads/<%= image %>" alt="<%= review.product %> image" onclick="openImageModal(this.src)">
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <div class="form-section">
+                        <h3>Review Details</h3>
+                        <p class="detail-content"><%= review.details %></p>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="pros-section">
+                            <h3>Pros</h3>
+                            <p><%= review.pros %></p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-section">
+                        <div class="cons-section">
+                            <h3>Cons</h3>
+                            <p><%= review.cons %></p>
+                        </div>
+                    </div>
+
+                    <% if (isOwner) { %> 
+                        <div class="detail-section">
+                            <div>
+                                <a href="/reviews/<%= review._id %>/edit" class="btn btn-secondary">Edit Review</a>
+                                <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST" class="detail-section">
+                                    <button type="submit" class="btn btn-danger">Delete Review</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+
+        </div>  
     </main>
 
     <footer>

@@ -14,55 +14,127 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/reviews">All Reviews</a></li>
+                    <% if (locals.isAuthenticated) { %>
+                    <li><a href="/reviews/create">Create Review</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <% } %>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <h2>Create New Review</h2>
-        <form action="/reviews" method="POST" enctype="multipart/form-data">
-            <div>
-                <label for="product">Product:</label>
-                <input type="text" id="product" name="product" required>
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Create New Review</h2>
             </div>
-            <div>
-                <label>Rating:</label>
-                <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="5" required/>
-                    <label for="star5" title="5 stars"></label>
-                    <input type="radio" id="star4" name="rating" value="4"/>
-                    <label for="star4" title="4 stars"></label>
-                    <input type="radio" id="star3" name="rating" value="3"/>
-                    <label for="star3" title="3 stars"></label>
-                    <input type="radio" id="star2" name="rating" value="2"/>
-                    <label for="star2" title="2 stars"></label>
-                    <input type="radio" id="star1" name="rating" value="1"/>
-                    <label for="star1" title="1 star"></label>
-                </div>
+
+            <div class="form-body">
+                <form action="/reviews" method="POST" enctype="multipart/form-data">
+                    <div class="form-grid">
+
+                        <div class="form-section">
+                            <label for="product">Product:</label>
+                            <input type="text" id="product" name="product" required>
+                        </div>
+
+                        <div class="form-section rating-section">
+                            <label>Rating:</label>
+                            <div class="star-rating">       
+                                <input type="radio" id="star5" name="rating" value="5" required/>
+                                <label for="star5" title="5 stars"></label>
+                                <input type="radio" id="star4" name="rating" value="4"/>
+                                <label for="star4" title="4 stars"></label>
+                                <input type="radio" id="star3" name="rating" value="3"/>
+                                <label for="star3" title="3 stars"></label>
+                                <input type="radio" id="star2" name="rating" value="2"/>
+                                <label for="star2" title="2 stars"></label>
+                                <input type="radio" id="star1" name="rating" value="1"/>
+                                <label for="star1" title="1 star"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="details">Details:</label>
+                            <textarea id="details" name="details" required placeholder="Share your experience with this product..."></textarea>
+                        </div>
+
+                        <div class="form-section">
+                            <div>
+                                <label for="pros">Pros:</label>
+                                <textarea id="pros" name="pros" required placeholder="What did you like about this product?"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label for="cons">Cons:</label>
+                                <textarea id="cons" name="cons" required placeholder="What could be improved?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section image-upload-section">
+                            
+                                <label for="images">Images:</label>
+                                <input type="file" id="images" name="images" multiple onchange="previewImages()" accept="image/*">
+
+                                    <div id="image-preview" class="image-preview">
+                                        <div class="image-preview-container">
+                                            <div class="no-image">No Image Selected</div>
+                                        </div>
+                                    </div>
+                            
+                        </div>
+
+                    <div class="submit-section">
+                    <button type="submit">Create Review</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label for="details">Details:</label>
-                <textarea id="details" name="details" required></textarea>
-            </div>
-            <div>
-                <label for="pros">Pros:</label>
-                <textarea id="pros" name="pros" required></textarea>
-            </div>
-            <div>
-                <label for="cons">Cons:</label>
-                <textarea id="cons" name="cons" required></textarea>
-            </div>
-            <div>
-                <label for="images">Images:</label>
-                <input type="file" id="images" name="images" multiple>
-            </div>
-            <button type="submit">Create Review</button>
-        </form>
+        </div>        
     </main>
 
     <footer>
         <p>&copy; <%= new Date().getFullYear() %> Tech Insight</p>
     </footer>
+    <script>
+        // JavaScript para mostrar vista previa de imágenes
+        function previewImages() {
+            const preview = document.getElementById('image-preview');
+            const files = document.querySelector('input[type=file]').files;
+            
+            preview.innerHTML = '';
+            
+            if (files.length === 0) {
+                const container = document.createElement('div');
+                container.className = 'image-preview-container';
+                
+                const noPreview = document.createElement('div');
+                noPreview.className = 'no-image';
+                noPreview.textContent = 'No Image Selected';
+                
+                container.appendChild(noPreview);
+                preview.appendChild(container);
+                return;
+            }
+            
+            for (const file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                
+                const container = document.createElement('div');
+                container.className = 'image-preview-container';
+                
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.onload = function() {
+                    URL.revokeObjectURL(this.src); // Liberar memoria cuando la imagen esté cargada
+                }
+                
+                container.appendChild(img);
+                preview.appendChild(container);
+            }
+        }
+    </script>
 </body>
 </html>
