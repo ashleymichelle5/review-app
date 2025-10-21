@@ -14,6 +14,26 @@
     --text-light: #666 ;
     --success: #48CAE4 ;
     --warning: #ff9800 ;
+    :root {
+        --primary:#c22a2a ;
+        --primary-dark: #660708 ;
+        --primary-light: #e50202 ;
+        --secondary: #4A4E69;
+        --dark:#660708 ;
+        --light: #f5f3f4 ;
+        --grey: #eaeff5 ;
+        --grey-dark: #b0bec5 ;
+        --text: #333 ;
+        --text-light: #666 ;
+        --success: #48CAE4 ;
+        --warning: #ff9800 ;
+        --danger: #f44336 ;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.15) ;
+        --card-radius: 12px ;
+        --button-radius: 50px;
+        --button-hover: ;
+        --transition: all 0.3s ease;
+    }
     --danger: #f44336 ;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.15) ;
     --card-radius: 12px ;
@@ -174,61 +194,8 @@ header li {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
-}
-
-/* Estrellas de calificacion */
-.star-rating-display {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  margin-bottom: 15px;
-  direction: ltr;
-}
-
-.star-rating-display span {
-  color: var(--grey-dark);
-  font-size: 1.2rem;
-  margin-right: 2px;
-}
-
-.star-rating-display span.filled {
-  color: #ffc107; /* Color amarillo para las estrellas llenas */
-}
-
-.star-rating span.filled {
-  color: #ffc107; /* Color amarillo para las estrellas llenas */
-}
-
-.star-rating { 
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  direction: rtl;
-}
-
-.star-rating > input {
-  display: none;
-}
-
-.star-rating > label {
-  cursor: pointer;
-  width: 1.2em;
-  font-size: 1.5rem;
-  color: var(--grey-dark);
-  margin-right: 5px;
-}
-
-.star-rating > label:before {
-  content: "★";
-}
-
-.star-rating > input:checked ~ label,
-.star-rating:not(:checked) > label:hover,
-.star-rating:not(:checked) > label:hover ~ label {
-  color: #ffc107;
 }
 
 /* Botones */
@@ -248,8 +215,14 @@ header li {
 }
 
 .btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
+  background: var(--button-hover);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(24,26,54,0.18);
+}
+
+.btn:focus {
+  outline: 3px solid rgba(108,92,231,0.14);
+  outline-offset: 3px;
 }
 
 .btn-secondary {
@@ -344,8 +317,30 @@ button {
 
 button:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-6px) scale(1.02);
 }
+
+/* entrance and subtle tilt */
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(20px) scale(.985) }
+  to { opacity: 1; transform: translateY(0) scale(1) }
+}
+
+@keyframes tilt {
+  0% { transform: rotateZ(0) }
+  50% { transform: rotateZ(0.3deg) }
+  100% { transform: rotateZ(0) }
+}
+
+.review-item { animation: floatIn 520ms cubic-bezier(.2,.9,.2,1) both; }
+
+/* shimmer for placeholders */
+@keyframes shimmer { 0% { background-position: -400px 0 } 100% { background-position: 400px 0 } }
+.shimmer { background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.04) 100%); background-size: 800px 100%; animation: shimmer 1.8s infinite linear; }
+
+/* star pop for rated stars */
+@keyframes starPop { 0% { transform: scale(.85) } 50% { transform: scale(1.25) } 100% { transform: scale(1) } }
+.star-rating-display span.filled.animate { animation: starPop 420ms cubic-bezier(.2,.9,.2,1); }
 
 /* review detail */
 .review-detail {
