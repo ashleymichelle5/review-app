@@ -1,5 +1,5 @@
 # Tech Insight 
-![screenshot of the app](./Screenshot-tech-insight.png)
+![screenshot of the app](./tech-insight.png)
 
 Tech Insight is a dynamic web application built with Node.js and Express, designed for tech enthusiasts to share in-depth reviews of electronic products. Users can create secure accounts and log in to contribute detailed reviews, complete with star ratings and images. The platform allows users to edit or delete their posts at any time and provides access to both personal reviews and community feedback, fostering an interactive and informative environment.
 
