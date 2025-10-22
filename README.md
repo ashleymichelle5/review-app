@@ -122,7 +122,7 @@ This project was planned and tracked using Trello:
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Ashley Sanchez**
 
 - GitHub: [@ashleymichelle5](https://github.com/ashleymichelle5)
 - LinkedIn: [Your Name](https://linkedin.com/in/your-profile)
@@ -130,6 +130,7 @@ This project was planned and tracked using Trello:
 - Email: ashleymsanchez05@gmail.com
 
 ---
+
 
 
 
