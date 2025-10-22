@@ -103,7 +103,7 @@ Tech Insight leverages the following npm packages and libraries:
 ![planning-models&routes](./planeacion3.png)
 
 ### Project Management
-This project was planned and tracked using Agile methodology:
+This project was planned and tracked using Trello:
 
 🔗 [View Trello Board](https://trello.com/b/2lMUCF6f/project-2)
 
@@ -130,4 +130,5 @@ This project was planned and tracked using Agile methodology:
 - Email: ashleymsanchez05@gmail.com
 
 ---
+
 
