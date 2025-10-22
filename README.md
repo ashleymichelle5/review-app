@@ -1,35 +1,133 @@
-# Tech Insight 
+# 💻 Tech Insight
+
+<div align="center">
+  
 ![screenshot of the app](./tech-insight.png)
 
-Tech Insight is a dynamic web application built with Node.js and Express, designed for tech enthusiasts to share in-depth reviews of electronic products. Users can create secure accounts and log in to contribute detailed reviews, complete with star ratings and images. The platform allows users to edit or delete their posts at any time and provides access to both personal reviews and community feedback, fostering an interactive and informative environment.
+**Your trusted community for in-depth tech product reviews and insights**
 
-I developed Tech Insight to empower users in making informed decisions and to highlight the value of shared experiences in today’s tech-driven world.
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 
-## Planning materials: 
+[🚀 Live Demo](https://tech-insight-02d34550335e.herokuapp.com) •  [📂 View Code](https://github.com/ashleymichelle5/review-app)
+
+</div>
+
+---
+
+## 📖 About The Project
+
+Tech Insight is a full-stack web application that empowers tech enthusiasts to share and discover comprehensive reviews of electronic products. Built with Node.js and Express, this platform creates a vibrant community where users can make informed purchasing decisions based on real experiences and detailed product evaluations.
+
+### 🎯 Project Vision
+
+In today's fast-paced tech landscape, making informed decisions about electronic purchases can be overwhelming. Tech Insight was created to bridge this gap by providing a platform where users can:
+
+- Share authentic, detailed product reviews
+- Rate products with a transparent star-rating system
+- Upload images to showcase real-world product usage
+- Make confident purchasing decisions
+
+---
+
+## ✨ Key Features
+
+- 📝 **Create Detailed Reviews** - Share comprehensive product evaluations with text and images
+- ⭐ **Star Rating System** - Rate products from 1 to 5 stars
+- 🖼️ **Image Uploads** - Enhance reviews with product photos
+- 🔐 **Secure Authentication** - JWT-based user sessions for data protection
+- ✏️ **Edit & Delete** - Full control over your reviews at any time
+- 👥 **Community Feedback** - Browse and interact with reviews from other users
+- 📱 **Responsive Design** - Seamless experience across all devices
+- 🔍 **Personal Dashboard** - Access all your reviews in one place
+
+---
+
+## 🛠️ Built With
+
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+### Backend
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+
+### Database
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+
+### Authentication & Security
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![bcrypt](https://img.shields.io/badge/bcrypt-Security-red?style=for-the-badge)
+
+### Deployment
+![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+
+---
+
+## 📦 Dependencies & Packages
+
+Tech Insight leverages the following npm packages and libraries:
+
+| Package | Purpose |
+|---------|---------|
+| `express` | Fast, minimalist web framework for Node.js |
+| `mongodb` | Official MongoDB driver for Node.js |
+| `jsonwebtoken` | JWT implementation for secure authentication |
+| `bcrypt` | Password hashing for secure user credentials |
+| `multer` | Middleware for handling multipart/form-data (file uploads) |
+| `dotenv` | Environment variable management |
+| `cookie-parser` | Parse HTTP request cookies |
+| `method-override` | HTTP method override middleware |
+| `path` | Node.js path utilities |
+| `fs` | File system operations |
+
+### Custom Modules
+- `authMiddleware` - Custom authentication middleware for route protection
+- `connectDB` - Database connection configuration and management
+
+---
+
+## 📐 Planning & Development
+
+### CRUD Operations
 ![planning-CRUD](./planeacion1.png)
+
+### Views & User Flow
 ![planning-views](./planeacion2.png)
+
+### Models & Routes Architecture
 ![planning-models&routes](./planeacion3.png)
 
-### Links
-* [My-Trello](https://trello.com/b/2lMUCF6f/project-2)
-* [Deploy-link](https://tech-insight-02d34550335e.herokuapp.com)
+### Project Management
+This project was planned and tracked using Agile methodology:
 
-## Technologies used:
+🔗 [View Trello Board](https://trello.com/b/2lMUCF6f/project-2)
 
-* **Frontend:** HTML, CSS and Javascript.
-* **Backend:** Node.js with Express.
-* **Database:** MongoDB for storing user data and reviews.
-* **Authentication:** JWT (JSON Web Tokens) for secure user sessions.
+---
 
-#### The code uses the following libraries: 
-* **dotenv**
-* **express** 
-* **path**
-* **cookie-parser**
-* **method-override**
-* **authMiddleware** 
-* **connectDB** (custom module, not a library) for connecting to the databse
-* **fs**
-* **jsonwebtoken**
-* **bcrypt**
-* **multer**
+## 🔐 Security Features
+
+- **Password Hashing**: All passwords are hashed using bcrypt before storage
+- **JWT Authentication**: Secure token-based authentication system
+- **HTTP-Only Cookies**: Tokens stored in HTTP-only cookies to prevent XSS attacks
+- **Environment Variables**: Sensitive data stored securely in `.env` files
+- **Input Validation**: Server-side validation to prevent injection attacks
+- **Method Override**: Support for RESTful routes with proper HTTP methods
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+
+- GitHub: [@ashleymichelle5](https://github.com/ashleymichelle5)
+- LinkedIn: [Your Name](https://linkedin.com/in/your-profile)
+- Portfolio: [yourwebsite.com](https://yourwebsite.com)
+- Email: ashleymsanchez05@gmail.com
+
+---
+
