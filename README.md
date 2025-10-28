@@ -11,7 +11,7 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 
-[🚀 Live Demo](https://tech-insight-02d34550335e.herokuapp.com) •  [📂 View Code](https://github.com/ashleymichelle5/review-app)
+[🚀 Live Demo](https://review-app-go0h.onrender.com) •  [📂 View Code](https://github.com/ashleymichelle5/review-app)
 
 </div>
 
@@ -64,7 +64,7 @@ In today's fast-paced tech landscape, making informed decisions about electronic
 ![bcrypt](https://img.shields.io/badge/bcrypt-Security-red?style=for-the-badge)
 
 ### Deployment
-![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
 ---
 
@@ -125,11 +125,12 @@ This project was planned and tracked using Trello:
 **Ashley Sanchez**
 
 - GitHub: [@ashleymichelle5](https://github.com/ashleymichelle5)
-- LinkedIn: [Your Name](https://linkedin.com/in/your-profile)
-- Portfolio: [yourwebsite.com](https://yourwebsite.com)
+- LinkedIn: [Ashley Sanchez](https://www.linkedin.com/in/ashley-sanchez-029331390/)
+- Portfolio: [ashleymsanchez.com](https://ashleymsanchez.com)
 - Email: ashleymsanchez05@gmail.com
 
 ---
+
 
 
 
